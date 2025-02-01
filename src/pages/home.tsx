@@ -1,5 +1,4 @@
 import { PostList } from '@/components/posts/post-list';
-import { useAuth } from '@/context/auth.context';
 
 export default function Home() {
   return (
