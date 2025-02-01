@@ -5,7 +5,6 @@ import { Button } from '@/components/ui/button';
 import { useAuth } from '@/context/auth.context';
 import { useLikePost, useDislikePost, useDeletePost } from '@/hooks/use-posts';
 import type { Post } from '@/types/graphql';
-import moment from 'moment';
 
 interface PostCardProps {
   post: Post;
