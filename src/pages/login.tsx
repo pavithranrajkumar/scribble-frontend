@@ -1,17 +1,18 @@
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link } from 'react-router-dom';
-import { Form, FormField } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { useLogin } from '@/hooks/use-auth';
 import { loginSchema, type LoginInput } from '@/lib/validations/auth';
+import { Form, FormField } from '@/components/ui/form';
 
 export default function Login() {
   const { login, loading } = useLogin();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<LoginInput>({
     resolver: zodResolver(loginSchema),
@@ -25,6 +26,13 @@ export default function Login() {
     });
   };
 
+  const handleQuickLogin = () => {
+    reset({
+      email: 'pavithran@example.com',
+      password: 'password123',
+    });
+  };
+
   return (
     <div className='container max-w-lg py-8'>
       <div className='mb-8 text-center'>
@@ -33,7 +41,20 @@ export default function Login() {
       </div>
 
       <Form onSubmit={handleSubmit(onSubmit)}>
-        <FormField label='Email' error={errors.email?.message}>
+        <FormField
+          label={
+            (
+              <div className='flex items-center gap-2'>
+                <span>Email</span>(
+                <span onClick={handleQuickLogin} className='text-sm text-primary underline cursor-pointer hover:text-primary/80'>
+                  Prefill values for testing
+                </span>
+                )
+              </div>
+            ) as unknown as string
+          }
+          error={errors.email?.message}
+        >
           <Input type='email' {...register('email')} error={!!errors.email} />
         </FormField>
 

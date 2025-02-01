@@ -6,7 +6,6 @@ import { ErrorBoundary } from '@/components/error-boundary';
 import PrivateRoute from './private-route';
 import { PublicRoute } from './public-route';
 
-// Lazy load pages
 const HomePage = React.lazy(() => import('@/pages/home'));
 const LoginPage = React.lazy(() => import('@/pages/login'));
 const RegisterPage = React.lazy(() => import('@/pages/register'));
